@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const db = require('./database/db');
 
 // Create a new express application named 'app'
 const app = express();
@@ -47,5 +48,7 @@ app.get('*', (req, res) => {
     });
 });
 
-// Configure our server to listen on the port defiend by our port variable
-app.listen(port, () => console.log(`BACK_END_SERVICE_PORT: ${port}`));
+db.connect().then(()=> {
+    // Configure our server to listen on the port defiend by our port variable
+    app.listen(port, () => console.log(`BACK_END_SERVICE_PORT: ${port}`));
+}).catch(()=>{});
