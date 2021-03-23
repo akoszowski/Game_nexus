@@ -13,10 +13,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm run install-changed && react-scripts start",
+    "build": "npm run install-changed && react-scripts build",
+    "build-dev": "npm run install-changed && dotenv -e .env.development react-scripts build",
+    "watch": "npm run install-changed && cra-build-watch",
+    "install-changed": "npm install install-changed && install-changed"
   },
   "eslintConfig": {
     "extends": [
