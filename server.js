@@ -32,6 +32,13 @@ const api = require('./routes/routes');
 // Configure app to use route
 app.use('/api/v1/', api);
 
+app.use('/login', (req, res) => {
+    res.send({
+        tokenLogin: req.body.login,
+        token: req.body.password
+    });
+})
+
 // This middleware informs the express application to serve our compiled React files
 // if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
     app.use(express.static(path.join(__dirname, 'client/build')));
