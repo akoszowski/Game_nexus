@@ -20,6 +20,7 @@ export default function Register()
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [repPassword, setRepPassword] = useState();
+  const repRegisterInput = document.getElementById("repPassword");
 
   const handleRegister = async e =>
    {
@@ -29,7 +30,11 @@ export default function Register()
         username,
         password
         });
-    else alert("Different passwords!");
+    else 
+    {
+        alert("Different passwords!");
+        repRegisterInput.value = "";
+    }
   }
 
   return(
@@ -46,7 +51,7 @@ export default function Register()
         </label>
         <label>
           <p>Repeat Password</p>
-          <input required type="password" onChange={e => setRepPassword(e.target.value)} />
+          <input id = "repPassword" required type="password" onChange={e => setRepPassword(e.target.value)} />
         </label>
           <div>
               <button type="submit">Submit</button>

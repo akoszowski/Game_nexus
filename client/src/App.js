@@ -26,59 +26,10 @@ function App()
   }
 
   return (
-    <div className = "wrapper">
-      <div className="App">
-        <h1>Game Nexus</h1>
-      </div>
-
-      <Dashboard />
+    <div className = "app-wrapper">
+      <Dashboard setToken={setToken} />
     </div>
   );
 }
 
 export default App;
-
-
-/*
-class App extends Component {
-  state = {
-    response: {}
-  };
-
-  componentDidMount() {
-    axios.get('/api/v1/say-something').then((res) => {
-      const response = res.data;
-      this.setState({response});
-    });
-  }
-
-  render() {
-    const [token, setToken] = useState();
-    
-    if (!token)
-    {
-      return (
-        <Login setToken = {setToken} />
-      )
-    }
-
-    return (
-        <div className = "wrapper">
-          <div className="App">
-            <h1>Game Nexus</h1>
-            <h1>{this.state.response.nazwa_projektu}</h1>
-          </div>
-
-          <BrowserRouter>
-            <Switch>
-              <Route path = "/dashboard">
-                <Dashboard />
-              </Route>
-            </Switch>
-          </BrowserRouter>
-        </div>
-    );
-  }
-}
-
-export default App;*/

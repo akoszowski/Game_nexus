@@ -1,0 +1,27 @@
+.topnav
+{
+    width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    background-color: lime;
+    overflow: hidden;
+}
+
+.topnav .top-button
+{
+    display: block;
+    color: black;
+    font-weight: 750;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    font-size: 25px;
+}
+
+.topnav .top-button:hover
+{
+    color: rgb(216, 250, 65);
+    cursor: pointer;
+}

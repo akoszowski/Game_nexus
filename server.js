@@ -35,6 +35,7 @@ app.use('/api/v1/', api);
 
 app.use('/login', (req, res) => {
     res.send({
+        token: "logged",
         login: req.body.login,
         password: sha1(req.body.password)
       });
