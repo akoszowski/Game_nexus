@@ -5,6 +5,7 @@ import './App.css';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import useToken from './useToken';
+import Register from './Register';
 
 
 function App() 
@@ -16,7 +17,12 @@ function App()
 
   if (!token) 
   {
-    return <Login setToken={setToken} />
+    return (
+    <div className = "wrapper">
+      <Login setToken={setToken} />
+      <Register />
+    </div>
+    );
   }
 
   return (

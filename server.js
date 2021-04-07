@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const db = require('./database/db');
+const sha1 = require('js-sha1');
 
 // Create a new express application named 'app'
 const app = express();
@@ -34,8 +35,15 @@ app.use('/api/v1/', api);
 
 app.use('/login', (req, res) => {
     res.send({
-        tokenLogin: req.body.login,
-        token: req.body.password
+        login: req.body.login,
+        password: sha1(req.body.password)
+      });
+})
+
+app.use('/register', (req, res) => {
+    res.send({
+        login: req.body.login,
+        password: sha1(req.body.password)
       });
 })
 
