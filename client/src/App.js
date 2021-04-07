@@ -5,29 +5,31 @@ import './App.css';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import useToken from './useToken';
+import Register from './Register';
 
 
 function App()
 {
-  const { token, setToken } = useToken();
+    const { token, setToken } = useToken();
 
-  console.log(token);
-  console.log(setToken);
+    console.log(token);
+    console.log(setToken);
 
-  if (!token)
-  {
-    return <Login setToken={setToken} />
-  }
+    if (!token)
+    {
+        return (
+            <div className = "wrapper">
+                <Login setToken={setToken} />
+                <Register />
+            </div>
+        );
+    }
 
-  return (
-      <div className = "wrapper">
-        <div className="App">
-          <h1>Game Nexus</h1>
+    return (
+        <div className = "app-wrapper">
+            <Dashboard setToken={setToken} />
         </div>
-
-        <Dashboard />
-      </div>
-  );
+    );
 }
 
 export default App;
