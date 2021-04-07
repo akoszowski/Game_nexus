@@ -1,0 +1,17 @@
+.login-wrapper
+{
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: beige;
+}
+
+.login
+{
+    display: block;
+}
+
+.pass
+{
+    display: block;
+}
