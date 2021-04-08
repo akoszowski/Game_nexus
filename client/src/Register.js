@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import sha1 from 'sha1'
 import axios from 'axios';
 import './Register.css';
@@ -24,11 +25,12 @@ export default function Register({setToken})
             }).then(res => {
                 console.log("Successfully registered!");
                 console.log(res.data.token);
-                setToken(res.data);
-            }).catch(err => {
-                console.log("Error!");
-                alert("Account with such username already exists. Try one more time!");
-            });
+                alert("Successfully registered! Please login");
+            }).catch(e => {});
+            //     .catch(err => {
+            //     console.log(err);
+            //     alert("Account with such username already exists. Try one more time!");
+            // });
         }
         else
         {
@@ -60,3 +62,8 @@ export default function Register({setToken})
         </div>
     )
 }
+
+Register.propTypes =
+    {
+        setToken: PropTypes.func.isRequired
+    };

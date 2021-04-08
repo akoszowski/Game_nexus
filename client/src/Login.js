@@ -21,7 +21,7 @@ export default function Login({setToken})
             password: sha1(password)
         }).then(res => {
             console.log("Successfully logged in!");
-            console.log(res.data.token);
+            console.log(res.data);
             setToken(res.data);
         }).catch(err => {
             console.log("Error!");
@@ -48,3 +48,8 @@ export default function Login({setToken})
         </div>
     )
 }
+
+Login.propTypes =
+    {
+        setToken: PropTypes.func.isRequired
+    };

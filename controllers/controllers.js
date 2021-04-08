@@ -33,5 +33,27 @@ const login = (req, res, next) => {
     });
 }
 
+const register = (req, res, next) => {
+    let username = req.body.username;
+    let passwdhash = req.body.password;
+
+    Queries.isRegistered(username).then(registered => {
+        if (registered) {
+            res.status(400).send("Account already registered!");
+        } else {
+            let tok = tokGen.generate();
+            Queries.registerUser(username, passwdhash)
+            .then(qres => {
+                res.status(200).json({
+                    token: tok
+                });
+            })
+            .catch(err => {
+                res.status(400).send(err);
+            });
+        }});
+}
+
 module.exports.saySomething = saySomething;
 module.exports.login = login;
+module.exports.register = register;
