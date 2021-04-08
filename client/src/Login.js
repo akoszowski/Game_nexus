@@ -1,43 +1,38 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios'
+import sha1 from 'sha1'
 import './Login.css';
 
 const port = process.env.PORT || 5000;
-
-async function loginUser(credentials)
-{
-    return fetch(`http://localhost:${port}/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(data => data.json())
-}
-
 
 export default function Login({setToken})
 {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
-    const handleSubmit = async e =>
+    const handleLogin = e =>
     {
-        console.log("Submitted");
+        console.log("Trying to log in");
 
         e.preventDefault();
-        const token = await loginUser({
-            username,
-            password
+        axios.post("/api/login", {
+            username: username,
+            password: sha1(password)
+        }).then(res => {
+            console.log("Successfully logged in!");
+            console.log(res.data.token);
+            setToken(res.data);
+        }).catch(err => {
+            console.log("Error!");
+            alert("Invalid login data. Try one more time!");
         });
-        setToken(token);
     }
 
     return(
         <div className="login-wrapper">
             <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
                 <label>
                     <p>Username</p>
                     <input required type="text" onChange={e => setUserName(e.target.value)} />
@@ -53,8 +48,3 @@ export default function Login({setToken})
         </div>
     )
 }
-
-Login.propTypes =
-    {
-        setToken: PropTypes.func.isRequired
-    };

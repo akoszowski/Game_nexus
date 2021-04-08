@@ -7,6 +7,10 @@ class Queries {
         return res.rows[0];
     }
 
+    static async loginAuth(username, passwdhash) {
+        let res = await db.query('SELECT username FROM users WHERE username = $1 AND passwdhash = $2', [username, passwdhash]);
+        return res.rows[0];
+    }
     // ...
 }
 
