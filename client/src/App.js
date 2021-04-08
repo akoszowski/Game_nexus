@@ -17,6 +17,8 @@ function App()
 
     if (!token)
     {
+        console.log("Login panel");
+
         return (
             <div className = "wrapper">
                 <Login setToken={setToken} />
@@ -24,6 +26,8 @@ function App()
             </div>
         );
     }
+
+    console.log("Dashboard panel");
 
     return (
         <div className = "app-wrapper">

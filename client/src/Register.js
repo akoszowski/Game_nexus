@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
+import sha1 from 'sha1'
+import axios from 'axios';
 import './Register.css';
 
 const port = process.env.PORT || 5000;
 
-async function registerUser(credentials)
-{
-    return fetch(`http://localhost:${port}/register`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-}
-
-
-export default function Register()
+export default function Register({setToken})
 {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [repPassword, setRepPassword] = useState();
     const repRegisterInput = document.getElementById("repPassword");
 
-    const handleRegister = async e =>
+    const handleRegister = e =>
     {
+        console.log("Trying to register");
+
         e.preventDefault();
-        if (password === repPassword)
-            registerUser({
-                username,
-                password
+        if (password === repPassword) {
+            axios.post("/api/register", {
+                username: username,
+                password: sha1(password)
+            }).then(res => {
+                console.log("Successfully registered!");
+                console.log(res.data.token);
+                setToken(res.data);
+            }).catch(err => {
+                console.log("Error!");
+                alert("Account with such username already exists. Try one more time!");
             });
+        }
         else
         {
             alert("Different passwords!");
