@@ -28,4 +28,4 @@ async function checkCookies () {
     return res.data.valid;
 }
 
-export {send,changeRootState, listen,checkCookies};
+export {send,changeRootState, listen, checkCookies};

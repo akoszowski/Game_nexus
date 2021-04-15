@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Dashboard.css';
 import './Login.css'
 import axios from 'axios'
-import {changeRootState, send,checkCookies} from './state-manager'
+import {changeRootState, send, checkCookies} from './state-manager'
 import {cookies} from './cookie-manager'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
