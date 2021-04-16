@@ -7,22 +7,10 @@ import './Login.css';
 import axios from 'axios'
 import sha1 from 'sha1'
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
 import {cookies} from './cookie-manager'
-import {changeRootState} from './state-manager'
-import {isDefined} from './helpers'
+
 
 function Login({setAuthorized}) {
-
-    // constructor(setAuthorized) {
-    //     super();
-    //     this.state = {
-    //         email: "",
-    //         password: "",
-    //         errorMsg: "⠀",
-    //         name: "",
-    //     };
-    // }
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState(" ");
@@ -39,18 +27,11 @@ function Login({setAuthorized}) {
     function error(errorMsg){
         setErrorMsg(errorMsg);
         setPassword("");
-        // setErrorMsg({errorMsg: errorMsg, password: ""});
     }
 
     function resetError(){
         setErrorMsg(" ");
-        // setErrorMsg({errorMsg:"⠀"});
     }
-
-    // function componentWillMount(){
-    //     this.error = this.error.bind(this);
-    //     this.resetError = this.resetError.bind(this);
-    // }
 
     function handleLogin(event) {
          const errorFun = error;

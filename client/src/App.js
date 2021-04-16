@@ -9,7 +9,7 @@ import {listen} from './state-manager'
 import {cookies} from './cookie-manager'
 import {isDefined} from './helpers'
 import axios from 'axios'
-import bg from './bg.svg'
+import bg from './bg_3.svg'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
 function App() {
