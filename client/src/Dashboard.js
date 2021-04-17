@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Dashboard.css';
 import {cookies} from './cookie-manager'
 import axios from "axios";
+import Lobby from './Lobby.js'
+import Settings from './Settings.js'
+import Stats from './Stats.js'
+
+
+function showLobby()
+{
+    document.getElementById("lobby-body").style.display = "block";
+    document.getElementById("stats-body").style.display = "none";
+    document.getElementById("settings-body").style.display = "none";
+}
+
+function showStats()
+{
+    document.getElementById("lobby-body").style.display = "none";
+    document.getElementById("stats-body").style.display = "block";
+    document.getElementById("settings-body").style.display = "none";
+}
+
+function showSettings()
+{
+    document.getElementById("lobby-body").style.display = "none";
+    document.getElementById("stats-body").style.display = "none";
+    document.getElementById("settings-body").style.display = "block";
+}
 
 export default function Dashboard({setAuthorized})
 {
-    // TODO:
-    //  1. checkout cookies
-    //  2.
-
     function handleLogout()
     {
         cookies.remove('token');
@@ -35,18 +56,25 @@ export default function Dashboard({setAuthorized})
         });
     }
 
+    useEffect(() => { showLobby() });
+
     return(
-        <div className="dashboard-wrapper">
+        <div id = "dsh" className="dashboard-wrapper">
+            <div className="dashboard-banner">
+                Game Nexus
+            </div>
             <div className="topnav">
-                <div className="top-button">Game Lobby</div>
-                <div className="top-button">Stats</div>
-                <div className="top-button" onClick={handleUserInfo}>Settings</div>
+                <div className="top-button" onClick={showLobby}>Game Lobby</div>
+                <div className="top-button" onClick={showStats}>Stats</div>
+                <div className="top-button" onClick={showSettings}>Settings</div>
                 <div className="top-button" onClick={handleLogout}>Log out</div>
+                <div className="top-button" onClick={handleUserInfo}>Get Info Console</div>
             </div>
-            <div className="dashboard-content">
-                <center><h1>Game Nexus Dashboard</h1></center>
-            </div>
+            <Lobby />
+            <Stats />
+            <Settings />
         </div>
 
     );
 }
+  

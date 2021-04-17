@@ -9,20 +9,12 @@ import sha1 from 'sha1'
 import 'react-phone-number-input/style.css'
 import {cookies} from './cookie-manager'
 
-
-function Login({setAuthorized}) {
+function Login({setAuthorized}) 
+{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMsg, setErrorMsg] = useState(" ");
     const [name, setName] = useState("");
-
-    function validateLogin() {
-        return email.length > 0 && password.length > 0;
-    }
-
-    function validateRegister() {
-        return email.length > 0 && password.length > 0 && name.length > 0;
-    }
 
     function error(errorMsg){
         setErrorMsg(errorMsg);
@@ -82,6 +74,7 @@ function Login({setAuthorized}) {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 autoFocus
+                                required
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -90,12 +83,13 @@ function Login({setAuthorized}) {
                         <Form.Group size="lg" controlId="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
+                                required
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-                        <Button variant="primary" type="submit" disabled={!validateLogin()}>
+                        <Button variant="primary" type="submit">
                             Login
                         </Button>
                         <div className="error">⠀</div>
@@ -108,6 +102,7 @@ function Login({setAuthorized}) {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 autoFocus
+                                required
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -117,6 +112,7 @@ function Login({setAuthorized}) {
                             <Form.Label>Username</Form.Label>
                             <Form.Control
                                 autoFocus
+                                required
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -125,12 +121,13 @@ function Login({setAuthorized}) {
                         <Form.Group size="lg" controlId="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
+                                required
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-                        <Button variant="primary" type="submit" disabled={!validateRegister()}>
+                        <Button variant="primary" type="submit">
                             Register
                         </Button>
                         <div className="error">⠀</div>
