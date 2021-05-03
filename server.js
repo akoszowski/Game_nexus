@@ -5,11 +5,6 @@ const cors = require('cors');
 const path = require('path');
 const db = require('./database/db');
 
-// TODO:
-//  1. Baza danych: tabele, zapytania
-//  2. Odpowiednie komunikaty błędow - niepoprawne logowanie
-//  3. Modyfikacja hierarchi stanów.
-//  4. Dashboard Grzesiowy.
 
 // Create a new express application named 'app'
 const app = express();

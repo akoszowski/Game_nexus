@@ -35,6 +35,12 @@ const Sabaac = [
 
 export default function Lobby()
 {
+    // FIXME:
+    //  ->  przed wejściem do gry: api/v1/newGame {username: , game: }
+    //  ->  po res status 200: https://game-nexus-rps.herokuapp.com/game/start {username: }
+    //  ->  jeśli dostaniesz status 400, to gracz ma jeszcze aktywną rozgrywkę
+    //  ->  i teraz w res masz urla na którego robisz redirect w nowej karcie
+
     const contentParse = (tab, maxPlayers) => tab.map(element => {
         const classList = element[1] ? "vert vert-game vert-offline" : "vert vert-game";
 

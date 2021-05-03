@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Dashboard.css';
 import './Settings.css';
 import {cookies} from './cookie-manager'
+import sha1 from 'sha1'
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -32,8 +33,18 @@ export default function Settings()
 
     }
 
+    // FIXME:
     function handlePasswordUpdate(event) {
+        axios.post("api/v1/updatePassword", {
+            email:  oldEmail, // FIXME dobry mail
+            oldPassword: sha1(oldPassword),
+            newPassword: sha1(newPassword)
+        }).then(() => {  // FIXME: być może info że zmiana się powiodła?\
+            // let url = res.body.url
+            // Jeśli tu jesteśmy hasło zostało zaktualizowane
+        }).catch(errorMsg => {
 
+        })
     }
 
     function handleImageUpdate(event) {

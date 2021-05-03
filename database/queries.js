@@ -30,6 +30,16 @@ class Queries {
         let res = await db.query('SELECT username, mail FROM users WHERE id = $1', [userId]);
         return res.rows[0];
     }
+
+    static async updateStats(username, game, result) {
+        await db.query('INSERT INTO stats(username, game, result) VALUES ($1, $2, $3)', [username, game, result]);
+        return true;
+    }
+
+    static async setPassword(mail, newPasswdHash) {
+        await db.query('UPDATE users SET passwdhash = $2 WHERE mail = $1', [mail, newPasswdHash]);
+        return true;
+    }
 }
 
 module.exports = Queries;

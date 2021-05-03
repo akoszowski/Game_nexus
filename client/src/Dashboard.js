@@ -37,9 +37,10 @@ export default function Dashboard({setAuthorized})
         window.location.reload();
     }
 
+    // FIXME: tu jest user info
     // Example of function for getting basic information about the user.
     function handleUserInfo(event) {
-        // TODO: error handler ?
+        // FIXME: error handler
 
         event.preventDefault();
         let token = cookies.get('token');
