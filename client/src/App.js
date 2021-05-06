@@ -11,17 +11,24 @@ import {isDefined} from './helpers'
 import axios from 'axios'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
-function App() {
-    const [authorized, setAuthorized] = useState(null);
+
+function isAuthorised()
+{
+    return !!cookies.get('token');
+}
+
+function App() 
+{
+    const [authorized, setAuthorized] = useState(isAuthorised());
 
     if (!authorized)
     {
         return (
             <div className="bg">
-                        <div className="App">
-                            <Login setAuthorized={setAuthorized} />
-                        </div>
+                <div className="App">
+                    <Login setAuthorized={setAuthorized} />
                 </div>
+            </div>
         );
     } 
     else 

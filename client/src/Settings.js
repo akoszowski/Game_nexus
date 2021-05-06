@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tabs";
 
-export default function Settings()
+export default function Settings({usernamevalue})
 {
     const [errorMsg, setErrorMsg] = useState(" ");
 
@@ -21,10 +21,6 @@ export default function Settings()
 
     const [profileImage, setProfileImage] = useState("");
 
-    function error(errorMsg){
-        setErrorMsg(errorMsg);
-    }
-
     function resetError(){
         setErrorMsg(" ");
     }
@@ -33,18 +29,57 @@ export default function Settings()
 
     }
 
-    // FIXME:
-    function handlePasswordUpdate(event) {
-        axios.post("api/v1/updatePassword", {
-            email:  oldEmail, // FIXME dobry mail
+    function handleUserInfo(event) {
+        // FIXME: error handler
+
+        if (event)
+            event.preventDefault();
+        
+        let data = null;
+        let token = cookies.get('token');
+        axios.post("/api/v1/userInfo", {token: token}).then(res =>{
+            data = res.data;
+            console.log(data);
+            console.log(data.mail);
+            console.log(data.username);
+            return data.mail;
+            
+        }).catch((error) => {
+            console.log("Error while parsing user info!");
+            console.log(error);
+            // errorFun(JSON.stringify(error.response.data));
+        });
+    }
+    
+    function handlePasswordUpdate(event) 
+    {
+        if (event)
+            event.preventDefault();
+
+        const holder = usernamevalue;
+        console.log("Update for " + holder);
+
+        axios.post("api/v1/updatePassword",
+        {
+            email:  holder, 
             oldPassword: sha1(oldPassword),
             newPassword: sha1(newPassword)
-        }).then(() => {  // FIXME: być może info że zmiana się powiodła?\
-            // let url = res.body.url
-            // Jeśli tu jesteśmy hasło zostało zaktualizowane
-        }).catch(errorMsg => {
+        }).then((res) => { 
+            // TOFIX - Ta część kodu sie nie wykonuje mimo suckesu operacji.
+            alert("Password update success!");
+            console.log("Success!");
 
+        }).catch((error) => {
+            alert("Password update failure");
+            error("Password update failure");
+            console.log("Password update failure");
+            console.log(error);
+
+             setOldPassword("");
+             setNewPassword("");
         })
+        
+       
     }
 
     function handleImageUpdate(event) {
@@ -62,12 +97,40 @@ export default function Settings()
         }
     }
 
-
     return (
         <div id="settings-body" className="settings-content main-content">
             <div class = "forms-wrapper">
                 <Tabs onSelect={resetError}>
-                    <Tab eventKey="EmailTab" title="Update Email" onClick={resetError} tabClassName="noborder">
+                <Tab eventKey="PasswordTab" title="Update Password" onClick={resetError} tabClassName="noborder">
+                        <div className="error"> {errorMsg}</div>
+                        <Form onSubmit={handlePasswordUpdate}>
+                            <Form.Group size="lg" controlId="oldpassword">
+                                <Form.Label>Old Password</Form.Label>
+                                <Form.Control
+                                    autoFocus
+                                    required
+                                    type="password"
+                                    value={oldPassword}
+                                    onChange={(e) => setOldPassword(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group size="lg" controlId="newpassword">
+                                <Form.Label>New Password</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="password"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Update password
+                            </Button>
+                            <div className="error"></div>
+                        </Form>
+                    </Tab>
+
+                    <Tab eventKey="EmailTab" title="Update Email" onClick={resetError} tabClassName="noborder" disabled>
                         <div className="error"> {errorMsg}</div>
                         <Form onSubmit={(e) => handleEmailUpdate(e)}>
                             <Form.Group size="lg" controlId="oldemail">
@@ -96,36 +159,7 @@ export default function Settings()
                         </Form>
                     </Tab>
 
-                    <Tab eventKey="PasswordTab" title="Update Password" onClick={resetError} tabClassName="noborder">
-                        <div className="error"> {errorMsg}</div>
-                        <Form onSubmit={(e) => handlePasswordUpdate(e)}>
-                            <Form.Group size="lg" controlId="oldpassword">
-                                <Form.Label>Old Password</Form.Label>
-                                <Form.Control
-                                    autoFocus
-                                    required
-                                    type="password"
-                                    value={oldPassword}
-                                    onChange={(e) => setOldPassword(e.target.value)}
-                                />
-                            </Form.Group>
-                            <Form.Group size="lg" controlId="newpassword">
-                                <Form.Label>New Password</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="password"
-                                    value={newPassword}
-                                    onChange={(e) => setNewPassword(e.target.value)}
-                                />
-                            </Form.Group>
-                            <Button variant="primary" type="submit">
-                                Update password
-                            </Button>
-                            <div className="error"></div>
-                        </Form>
-                    </Tab>
-
-                    <Tab eventKey="AvatarTab" title="Update Profile Image" onClick={resetError} tabClassName="noborder">
+                    <Tab eventKey="AvatarTab" title="Update Profile Image" onClick={resetError} tabClassName="noborder" disabled>
                         <div className="error"> {errorMsg}</div>
                         <Form onSubmit={(e) => handleImageUpdate(e)}>
                             <Form.Group size="lg" controlId="avatar">

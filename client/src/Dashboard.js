@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import {cookies} from './cookie-manager'
 import axios from "axios";
@@ -30,6 +30,8 @@ function showSettings()
 
 export default function Dashboard({setAuthorized})
 {
+    const [mailvalue, setMail] = useState();
+
     function handleLogout()
     {
         cookies.remove('token');
@@ -37,19 +39,23 @@ export default function Dashboard({setAuthorized})
         window.location.reload();
     }
 
-    // FIXME: tu jest user info
-    // Example of function for getting basic information about the user.
     function handleUserInfo(event) {
         // FIXME: error handler
 
-        event.preventDefault();
+        if (event)
+            event.preventDefault();
+        
+        let data = null;
         let token = cookies.get('token');
         axios.post("/api/v1/userInfo", {token: token}).then(res =>{
-            const data = res.data;
-            console.log(data);
-            console.log(data.mail);
-            console.log(data.username);
-            // console.log(data.);
+            
+            data = res.data;
+            if (document.getElementById("namebutton"))
+                document.getElementById("namebutton").innerHTML = "[" + data.username + "]";
+
+            setMail(data.mail);
+            return data.username;
+            
         }).catch((error) => {
             console.log("Error!");
             console.log(error);
@@ -57,7 +63,16 @@ export default function Dashboard({setAuthorized})
         });
     }
 
-    useEffect(() => { showLobby() });
+    async function getUserName()
+    {
+        await handleUserInfo();
+        console.log("Mail set: " + mailvalue);
+    }
+
+    useEffect(() => { 
+        showLobby(); 
+        getUserName();
+    });
 
     return(
         <div id = "dsh" className="dashboard-wrapper">
@@ -69,11 +84,11 @@ export default function Dashboard({setAuthorized})
                 <div className="top-button" onClick={showStats}>Stats</div>
                 <div className="top-button" onClick={showSettings}>Settings</div>
                 <div className="top-button" onClick={handleLogout}>Log out</div>
-                <div className="top-button" onClick={handleUserInfo}>Get Info Console</div>
+                <div id = "namebutton" className="top-button right-button" onClick={handleUserInfo}>[Username]</div>
             </div>
-            <Lobby />
-            <Stats />
-            <Settings />
+            <Lobby mailvalue = {mailvalue} />
+            <Stats mailvalue = {mailvalue} />
+            <Settings usernamevalue = {mailvalue} />
         </div>
 
     );
