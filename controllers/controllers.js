@@ -112,7 +112,7 @@ const updatePassword = (req, res, next) => {
     Queries.loginAuth([mail, curPasswdHash]).then(exists => {
         if (exists) {
             Queries.setPassword(mail, newPasswdHash).then( updated => {
-               res.status(200);
+               res.status(200).send("Updated password!");
             });
         } else {
             res.status(400).send("Invalid password!");

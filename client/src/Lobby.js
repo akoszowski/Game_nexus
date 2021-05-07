@@ -18,7 +18,7 @@ function playTTTSingle()
 
 function playTTTMulti()
 {
-
+    window.open("https://game-nexus-rps.herokuapp.com/ ", "_blank");
 }
 
 function playSabacc()
@@ -26,7 +26,7 @@ function playSabacc()
     
 }
 
-export default function Lobby()
+export default function Lobby({mailvalue})
 {
 
     return (
