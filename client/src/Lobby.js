@@ -13,7 +13,7 @@ import e from 'cors';
 
 function playTTTSingle()
 {
-
+    window.open("https://game-nexus-rps.herokuapp.com/single", "_blank");
 }
 
 function playTTTMulti()
