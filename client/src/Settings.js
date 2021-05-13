@@ -65,7 +65,6 @@ export default function Settings({usernamevalue})
             oldPassword: sha1(oldPassword),
             newPassword: sha1(newPassword)
         }).then((res) => { 
-            // TOFIX - Ta część kodu sie nie wykonuje mimo suckesu operacji.
             alert("Password update success!");
             console.log("Success!");
 

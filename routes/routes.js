@@ -9,5 +9,6 @@ router.post('/userInfo', controllers.userInfo);
 router.post('newGame', controllers.newGame);
 router.post('/stats', controllers.updateStats);
 router.post('/updatePassword', controllers.updatePassword);
+router.post('/validate', controllers.validate);
 
 module.exports = router;

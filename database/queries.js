@@ -40,6 +40,12 @@ class Queries {
         await db.query('UPDATE users SET passwdhash = $2 WHERE mail = $1', [mail, newPasswdHash]);
         return true;
     }
+
+    // Check login data.
+    static async gameValidation(vals) {
+        let res = await db.query('SELECT username FROM users WHERE mail = $1 AND passwdhash = $2', vals);
+        return res.rows[0];
+    }
 }
 
 module.exports = Queries;

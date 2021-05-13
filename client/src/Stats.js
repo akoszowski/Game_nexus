@@ -8,7 +8,7 @@ export default function Stats()
 {
     return (
         <div id ="stats-body" className="stats-content main-content">
-            <h2>Tutaj jakieś rankingi na kiju</h2>
+            <h2>Tutaj jakieś statystyki na kiju</h2>
         </div>
     )
 }

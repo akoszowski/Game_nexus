@@ -5,12 +5,14 @@ import axios from "axios";
 import Lobby from './Lobby.js'
 import Settings from './Settings.js'
 import Stats from './Stats.js'
+import Ranking from './Ranking';
 
 
 function showLobby()
 {
     document.getElementById("lobby-body").style.display = "block";
     document.getElementById("stats-body").style.display = "none";
+    document.getElementById("ranking-body").style.display = "none";
     document.getElementById("settings-body").style.display = "none";
 }
 
@@ -18,6 +20,15 @@ function showStats()
 {
     document.getElementById("lobby-body").style.display = "none";
     document.getElementById("stats-body").style.display = "block";
+    document.getElementById("ranking-body").style.display = "none";
+    document.getElementById("settings-body").style.display = "none";
+}
+
+function showRanking()
+{
+    document.getElementById("lobby-body").style.display = "none";
+    document.getElementById("stats-body").style.display = "none";
+    document.getElementById("ranking-body").style.display = "block";
     document.getElementById("settings-body").style.display = "none";
 }
 
@@ -25,6 +36,7 @@ function showSettings()
 {
     document.getElementById("lobby-body").style.display = "none";
     document.getElementById("stats-body").style.display = "none";
+    document.getElementById("ranking-body").style.display = "none";
     document.getElementById("settings-body").style.display = "block";
 }
 
@@ -82,12 +94,14 @@ export default function Dashboard({setAuthorized})
             <div className="topnav">
                 <div className="top-button" onClick={showLobby}>Game Lobby</div>
                 <div className="top-button" onClick={showStats}>Stats</div>
+                <div className="top-button" onClick={showRanking}>Ranking</div>
                 <div className="top-button" onClick={showSettings}>Settings</div>
                 <div className="top-button" onClick={handleLogout}>Log out</div>
                 <div id = "namebutton" className="top-button right-button" onClick={handleUserInfo}>[Username]</div>
             </div>
             <Lobby mailvalue = {mailvalue} />
             <Stats mailvalue = {mailvalue} />
+            <Ranking />
             <Settings usernamevalue = {mailvalue} />
         </div>
 

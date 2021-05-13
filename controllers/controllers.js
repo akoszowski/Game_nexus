@@ -100,7 +100,7 @@ const updateStats = (req, res, next) => {
         });
         activeGames.delete(username);       // FIXME: potential callback ?
     } else {
-        res.status(400).send("Not sychronized data. Such a user has not started a game!");
+        res.status(400).send("Not synchronized data. Such a user has not started a game!");
     }
 }
 
@@ -111,13 +111,37 @@ const updatePassword = (req, res, next) => {
     let newPasswdHash = req.body.newPassword;
     Queries.loginAuth([mail, curPasswdHash]).then(exists => {
         if (exists) {
-            Queries.setPassword(mail, newPasswdHash).then( updated => {
+            Queries.setPassword(mail, newPasswdHash).then(updated => {
                res.status(200).send("Updated password!");
             });
         } else {
             res.status(400).send("Invalid password!");
         }
+    }).catch(err => {
+        console.log("Update error!")
     })
+}
+
+const validate = (req, res, next) => {
+    let mail = req.body.email;
+    let passwdHash = req.body.passwordHash;
+
+    Queries.gameValidation([mail, passwdHash]).then(username => {
+        if (username) {
+            if (!activeGames.has(username)) {
+                res.status(200).json({
+                    username: username
+                });
+            } else {
+                res.status(400).send("Player has already active game!");
+            }
+        } else {
+            res.status(400).send("Validation failed");
+        }
+    }).catch(err => {
+        console.log("gameValidation error!");
+    })
+
 }
 
 module.exports.register = register;
@@ -127,4 +151,5 @@ module.exports.userInfo = userInfo;
 module.exports.newGame = newGame;
 module.exports.updateStats = updateStats;
 module.exports.updatePassword = updatePassword;
+module.exports.validate = validate;
 
