@@ -90,13 +90,16 @@ const newGame = (req, res, next) => {
 }
 
 // Obtain statistics after the game finishes.
+// const games = ["rock-paper-scissors", "tic-tac-toe"];
+
 const updateStats = (req, res, next) => {
     let game = req.body.game;
     let username = req.body.username;
     let result = req.body.result;
+
     if (activeGames.has(username)) {
         Queries.updateStats(username, game, result).then(updated => {
-            res.status(200);
+            res.status(200).send("Stats successfully updated");
         });
         activeGames.delete(username);       // FIXME: potential callback ?
     } else {
@@ -144,6 +147,24 @@ const validate = (req, res, next) => {
 
 }
 
+const gamesInfo = (req, res, next) => {
+    Queries.getGamesInfo().then(rows => {
+        res.status(200).json(rows);
+    }).catch(err => {
+        console.log("Error while getting gamesInfo data!");
+    });
+}
+
+const statsInfo = (req, res, next) => {
+    let username = req.query.username;
+    Queries.getStatsInfo(username).then(stats => {
+        res.status(200).json(stats);
+    }).catch(err => {
+        console.log("Error while getting statsInfo data!");
+    });
+}
+
+
 module.exports.register = register;
 module.exports.login = login;
 module.exports.validToken = validToken;
@@ -152,4 +173,6 @@ module.exports.newGame = newGame;
 module.exports.updateStats = updateStats;
 module.exports.updatePassword = updatePassword;
 module.exports.validate = validate;
+module.exports.gamesInfo = gamesInfo;
+module.exports.statsInfo = statsInfo;
 

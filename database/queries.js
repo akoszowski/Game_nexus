@@ -46,6 +46,16 @@ class Queries {
         let res = await db.query('SELECT username FROM users WHERE mail = $1 AND passwdhash = $2', vals);
         return res.rows[0];
     }
+
+    static async getGamesInfo() {
+        let res = await db.query('SELECT game FROM games');
+        return res.rows;
+    }
+
+    static async getStatsInfo(username) {
+        let res = await db.query('SELECT * FROM stats WHERE username = $1', [username]);
+        return res.rows;
+    }
 }
 
 module.exports = Queries;

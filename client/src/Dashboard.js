@@ -42,7 +42,7 @@ function showSettings()
 
 export default function Dashboard({setAuthorized})
 {
-    const [mailvalue, setMail] = useState();
+    const [data, setData] = useState({username: null, email:null,  games:[], statsInfo: []});
 
     function handleLogout()
     {
@@ -51,40 +51,75 @@ export default function Dashboard({setAuthorized})
         window.location.reload();
     }
 
-    function handleUserInfo(event) {
-        // FIXME: error handler
+    // function handleUserInfo(event) {
+    //     // FIXME: error handler
+    //
+    //     if (event)
+    //         event.preventDefault();
+    //
+    //     let data = null;
+    //     let token = cookies.get('token');
+    //     axios.post("/api/v1/userInfo", {token: token}).then(res =>{
+    //
+    //         data = res.data;
+    //         if (document.getElementById("namebutton"))
+    //             document.getElementById("namebutton").innerHTML = "[" + data.username + "]";
+    //
+    //         setMail(data.mail);
+    //         setUsername(data.username);
+    //         return data.username;
+    //
+    //     }).catch((error) => {
+    //         console.log("Error!");
+    //         console.log(error);
+    //         // errorFun(JSON.stringify(error.response.data));
+    //     });
+    // }
+    //
+    // function handleGamesInfo(event) {
+    //     if (event) {
+    //         event.preventDefault();
+    //     }
+    //
+    //     axios.get("api/v1/gamesInfo").then(res => {
+    //         setGames(res.data);
+    //     }).catch(err => {
+    //         console.log("getGames error");
+    //         console.log(err);
+    //     })
+    // }
+    //
+    // async function getUserName()
+    // {
+    //     await handleUserInfo();
+    //     console.log("Mail set: " + mailvalue);
+    // }
+    //
+    // async function getGames() {
+    //     await handleGamesInfo();
+    //     console.log(games);
+    // }
 
-        if (event)
-            event.preventDefault();
-        
-        let data = null;
-        let token = cookies.get('token');
-        axios.post("/api/v1/userInfo", {token: token}).then(res =>{
-            
-            data = res.data;
-            if (document.getElementById("namebutton"))
-                document.getElementById("namebutton").innerHTML = "[" + data.username + "]";
+    useEffect(() => {
+        const fetchData = async () => {
+            let token = cookies.get('token');
 
-            setMail(data.mail);
-            return data.username;
-            
-        }).catch((error) => {
-            console.log("Error!");
-            console.log(error);
-            // errorFun(JSON.stringify(error.response.data));
-        });
-    }
+            const userInfo = await axios.post("/api/v1/userInfo", {token: token});
 
-    async function getUserName()
-    {
-        await handleUserInfo();
-        console.log("Mail set: " + mailvalue);
-    }
+            const gamesInfo = await axios.get("api/v1/gamesInfo");
 
-    useEffect(() => { 
-        showLobby(); 
-        getUserName();
-    });
+            const statsInfo = await axios.get("api/v1/statsInfo", {
+                params: {
+                    username: userInfo.data.username
+                },
+            });
+
+            setData({username: userInfo.data.username, email: userInfo.data.email, games: gamesInfo.data, statsInfo: statsInfo.data});
+        };
+
+        fetchData();
+        showLobby();
+    }, []);
 
     return(
         <div id = "dsh" className="dashboard-wrapper">
@@ -97,12 +132,12 @@ export default function Dashboard({setAuthorized})
                 <div className="top-button" onClick={showRanking}>Ranking</div>
                 <div className="top-button" onClick={showSettings}>Settings</div>
                 <div className="top-button" onClick={handleLogout}>Log out</div>
-                <div id = "namebutton" className="top-button right-button" onClick={handleUserInfo}>[Username]</div>
+                <div id = "namebutton" className="top-button right-button">[{data.username}]</div>
             </div>
-            <Lobby mailvalue = {mailvalue} />
-            <Stats mailvalue = {mailvalue} />
-            <Ranking />
-            <Settings usernamevalue = {mailvalue} />
+            <Lobby mailvalue = {data.email} />
+            <Stats games = {data.games} username = {data.username} statsInfo= {data.statsInfo}/>
+            <Ranking games = {data.games} username = {data.username} />
+            <Settings usernamevalue = {data.email} />
         </div>
 
     );

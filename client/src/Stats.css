@@ -1,0 +1,25 @@
+@media all {
+    .stats-body {
+        max-width: 60%;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .stats-table {
+        table-layout: fixed;
+        overflow-x: auto;
+    }
+
+    .username {
+        width: 40%;
+    }
+
+    .date {
+        width: 40%;
+    }
+
+    .result {
+        width: 20%;
+    }
+}

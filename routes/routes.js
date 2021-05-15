@@ -10,5 +10,7 @@ router.post('newGame', controllers.newGame);
 router.post('/stats', controllers.updateStats);
 router.post('/updatePassword', controllers.updatePassword);
 router.post('/validate', controllers.validate);
+router.get('/gamesInfo', controllers.gamesInfo);
+router.get('/statsInfo', controllers.statsInfo);
 
 module.exports = router;
