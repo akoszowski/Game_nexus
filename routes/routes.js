@@ -12,5 +12,6 @@ router.post('/updatePassword', controllers.updatePassword);
 router.post('/validate', controllers.validate);
 router.get('/gamesInfo', controllers.gamesInfo);
 router.get('/statsInfo', controllers.statsInfo);
+router.get('/rankingInfo', controllers.rankingInfo);
 
 module.exports = router;

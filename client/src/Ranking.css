@@ -1,0 +1,25 @@
+@media all {
+    .ranking-body {
+        max-width: 60%;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ranking-table {
+        table-layout: fixed;
+        overflow-x: auto;
+    }
+
+    .place {
+        width: 30%;
+    }
+
+    .username {
+        width: 40%;
+    }
+
+    .wins {
+        width: 30%;
+    }
+}

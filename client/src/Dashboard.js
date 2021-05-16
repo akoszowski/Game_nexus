@@ -42,7 +42,7 @@ function showSettings()
 
 export default function Dashboard({setAuthorized})
 {
-    const [data, setData] = useState({username: null, email:null,  games:[], statsInfo: []});
+    const [data, setData] = useState({username: null, email:null,  games:[], statsInfo: [], rankingInfo: []});
 
     function handleLogout()
     {
@@ -50,55 +50,6 @@ export default function Dashboard({setAuthorized})
         setAuthorized(false);
         window.location.reload();
     }
-
-    // function handleUserInfo(event) {
-    //     // FIXME: error handler
-    //
-    //     if (event)
-    //         event.preventDefault();
-    //
-    //     let data = null;
-    //     let token = cookies.get('token');
-    //     axios.post("/api/v1/userInfo", {token: token}).then(res =>{
-    //
-    //         data = res.data;
-    //         if (document.getElementById("namebutton"))
-    //             document.getElementById("namebutton").innerHTML = "[" + data.username + "]";
-    //
-    //         setMail(data.mail);
-    //         setUsername(data.username);
-    //         return data.username;
-    //
-    //     }).catch((error) => {
-    //         console.log("Error!");
-    //         console.log(error);
-    //         // errorFun(JSON.stringify(error.response.data));
-    //     });
-    // }
-    //
-    // function handleGamesInfo(event) {
-    //     if (event) {
-    //         event.preventDefault();
-    //     }
-    //
-    //     axios.get("api/v1/gamesInfo").then(res => {
-    //         setGames(res.data);
-    //     }).catch(err => {
-    //         console.log("getGames error");
-    //         console.log(err);
-    //     })
-    // }
-    //
-    // async function getUserName()
-    // {
-    //     await handleUserInfo();
-    //     console.log("Mail set: " + mailvalue);
-    // }
-    //
-    // async function getGames() {
-    //     await handleGamesInfo();
-    //     console.log(games);
-    // }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -114,7 +65,15 @@ export default function Dashboard({setAuthorized})
                 },
             });
 
-            setData({username: userInfo.data.username, email: userInfo.data.email, games: gamesInfo.data, statsInfo: statsInfo.data});
+            const rankingInfo = await axios.get("api/v1/rankingInfo");
+
+            setData({
+                username: userInfo.data.username,
+                email: userInfo.data.email,
+                games: gamesInfo.data,
+                statsInfo: statsInfo.data,
+                rankingInfo: rankingInfo.data
+            });
         };
 
         fetchData();
@@ -136,7 +95,7 @@ export default function Dashboard({setAuthorized})
             </div>
             <Lobby mailvalue = {data.email} />
             <Stats games = {data.games} username = {data.username} statsInfo= {data.statsInfo}/>
-            <Ranking games = {data.games} username = {data.username} />
+            <Ranking games = {data.games} username = {data.username} rankingInfo= {data.rankingInfo}/>
             <Settings usernamevalue = {data.email} />
         </div>
 

@@ -160,8 +160,16 @@ const statsInfo = (req, res, next) => {
     Queries.getStatsInfo(username).then(stats => {
         res.status(200).json(stats);
     }).catch(err => {
-        console.log("Error while getting statsInfo data!");
+        res.status(400).send("Error while getting statsInfo data!");
     });
+}
+
+const rankingInfo = (req, res, next) => {
+    Queries.getRankingInfo().then(ranking => {
+        res.status(200).json(ranking);
+    }).catch(err => {
+        res.status(400).send("Error while getting rankingInfo data!");
+    })
 }
 
 
@@ -175,4 +183,5 @@ module.exports.updatePassword = updatePassword;
 module.exports.validate = validate;
 module.exports.gamesInfo = gamesInfo;
 module.exports.statsInfo = statsInfo;
+module.exports.rankingInfo = rankingInfo;
 

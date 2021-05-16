@@ -8,22 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Stats({games, username, statsInfo})
 {
-
-    // useEffect(() => {
-    //     console.log("Sending get stats request")
-    //     axios.get("api/v1/statsInfo", {
-    //         params: {
-    //             username: username
-    //         },
-    //     }).then(res => {
-    //         console.log("Got stats data");
-    //         setUserStatsRows(res.data);
-    //     }).catch(err => {
-    //         console.log("Error downloading userStats data!");
-    //         console.log(err);
-    //     })
-    // });
-
     return (
         <div id ="stats-body" className="stats-content main-content">
             {games.map((gamesRow, gamesRowIndex) => {

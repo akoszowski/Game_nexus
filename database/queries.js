@@ -56,6 +56,11 @@ class Queries {
         let res = await db.query('SELECT * FROM stats WHERE username = $1', [username]);
         return res.rows;
     }
+
+    static async getRankingInfo() {
+        let res = await db.query('SELECT username, game, COUNT(result) AS wins FROM stats WHERE result = 1 GROUP BY game, username ORDER BY wins DESC');
+        return res.rows;
+    }
 }
 
 module.exports = Queries;
