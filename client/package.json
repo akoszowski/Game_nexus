@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "npm run install-changed && react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run install-changed && react-scripts build",
     "build-dev": "npm run install-changed && dotenv -e .env.development react-scripts build",
     "watch": "npm run install-changed && cra-build-watch",
     "install-changed": "npm install"
