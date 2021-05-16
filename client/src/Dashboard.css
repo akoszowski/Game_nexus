@@ -1,31 +1,48 @@
-/*.topnav*/
-/*{*/
-/*    width: 100%;*/
-/*    height: 40px;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    background-color: lime;*/
-/*    overflow: hidden;*/
-/*}*/
+.dashboard-wrapper
+{
+    min-height: 100%;
+}
 
-/*.topnav .top-button*/
-/*{*/
-/*    display: block;*/
-/*    color: black;*/
-/*    font-weight: 750;*/
-/*    text-align: center;*/
-/*    padding: 5px;*/
-/*    margin: 10px;*/
-/*    font-size: 25px;*/
-/*}*/
 
-/*.topnav .top-button:hover*/
-/*{*/
-/*    color: rgb(216, 250, 65);*/
-/*    cursor: pointer;*/
-/*}*/
+.topnav
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lime;
+    overflow: hidden;
+}
 
-.logout-button {
-    text-align: right;
+.topnav .top-button
+{
+    display: block;
+    color: black;
+    font-weight: 750;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    font-size: 25px;
+}
+
+.topnav .top-button:hover
+{
+    color: rgb(216, 250, 65);
+    cursor: pointer;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.main-content
+{
+    padding: 10px 0;
+    background-color: beige;
+}
+
+.dashboard-banner
+{
+    text-align: center;
+    color: skyblue;
+    font-weight: 900;
+    font-size: 5vh;
 }

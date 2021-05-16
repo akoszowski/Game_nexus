@@ -1,0 +1,31 @@
+@media all {
+    .pools{
+        max-width: 60%;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: white;
+        border-radius:.5em;
+    }
+
+    .poolsTable{
+        table-layout: fixed;
+        overflow-x: scroll;
+    }
+
+    .poolsRow:hover{
+        cursor: pointer;
+        background-color: rgba(0, 115, 225,0.5);
+    }
+
+    .id{
+    }
+    
+    .name{
+        width: 48%;
+    }
+    
+    .address{
+        width: 48%;
+    }
+}

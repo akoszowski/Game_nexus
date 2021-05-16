@@ -1,28 +1,27 @@
-.login-wrapper
-{
-    padding: 20px;
-    width: fit-content;
-    margin: 0 auto;
-    text-align: center;
-    background-color: beige;
-}
+@media all {
+    .Login {
+        padding: .1em .1em .1em .1em;
+        margin-left:auto;
+        margin-right:auto;
+        max-width: 320px;
+        background-color:white;
+        border-radius:.5em;
+    }
 
-p
-{
-    text-align: left;
-    margin-left: 10px;
-    margin-bottom: 5px;
-    margin-top: 15px;
-}
+    .tab-content {
+        padding: 10px;
+    }
 
-input
-{
-    width: calc(100% - 20px);
-    margin: 0 10px;
-    padding: 0;
-}
+    .error {
+        color: #9b1919;
+    }
 
-button
-{
-    margin-top: 10px;
+    .nav-tabs .nav-link {
+        border-top: 0 solid transparent;
+        border-left: 0 solid transparent;
+        border-right: 0 solid transparent;
+    }
+
+    #LoginTab {
+    }
 }

@@ -1,0 +1,67 @@
+@media all {
+    .div{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-x:auto;
+    }
+
+    .flipper{
+        transform:rotateX(180deg);
+        -ms-transform:rotateX(180deg); /* IE 9 */
+        -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+
+    }
+
+    .timetableRootDiv {
+        width: 80%;
+        background-color: white;
+        border-radius:.5em;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    .timetable {
+        table-layout: auto;
+        display: inline-block;
+    }
+
+    .zero{
+        margin-top: 0;
+        padding-top:0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .timetableHeaderDate{
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+
+    .inline{
+        display: inline-block;
+    }
+
+    .free{
+        background-color: rgba(102, 234, 102, 0.5)
+    }
+
+    .busy{
+        background-color: rgba(148, 72, 72,0.5)
+    }
+
+    .selected{
+        background-color: rgba(207, 214, 31,0.5)
+    }
+
+    .leftButton{
+        margin-right: 10px;
+        width: 100px;
+    }
+
+    .rightButton{
+        margin-left: 10px;
+        width: 100px;
+    }
+}

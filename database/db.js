@@ -5,7 +5,6 @@ const connectionString = "postgres://fjoiauwcdcgong:8fbf775c79d9cda97e876a56d0a6
 // Connecting to our database via URI
 const client = new Client({
     connectionString: connectionString,
-    //connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
     }

@@ -1,0 +1,22 @@
+.forms-wrapper
+{
+    text-align: left;
+    margin: 0 auto;
+    width: 50%;
+}
+
+@media (max-width: 800px) 
+{
+    .forms-wrapper
+    {
+      width: 400px;
+    }
+}
+
+@media (max-width: 400px) 
+{
+    .forms-wrapper
+    {
+      width: 100%;
+    }
+}

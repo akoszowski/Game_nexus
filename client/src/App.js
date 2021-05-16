@@ -1,39 +1,44 @@
-import React from 'react';
-//import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Dashboard from './Dashboard';
 import Login from './Login';
-import useToken from './useToken';
-import Register from './Register';
+import Pools from './Pools';
+import Timetable from './Timetable';
+import Dashboard from './Dashboard';
+import {listen} from './state-manager'
+import {cookies} from './cookie-manager'
+import {isDefined} from './helpers'
+import axios from 'axios'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 
-function App()
+function isAuthorised()
 {
-    const { token, setToken } = useToken();
+    return !!cookies.get('token');
+}
 
-    console.log(token);
-    console.log(setToken);
+function App() 
+{
+    const [authorized, setAuthorized] = useState(isAuthorised());
 
-    if (!token)
+    if (!authorized)
     {
-        console.log("Login panel");
-
         return (
-            <div className = "wrapper">
-                <Login setToken={setToken} />
-                <Register />
+            <div className="bg">
+                <div className="App">
+                    <Login setAuthorized={setAuthorized} />
+                </div>
+            </div>
+        );
+    } 
+    else 
+    {
+        return (
+            <div className="app-wrapper">
+                <Dashboard setAuthorized={setAuthorized}/>
             </div>
         );
     }
-
-    console.log("Dashboard panel");
-
-    return (
-        <div className = "app-wrapper">
-            <Dashboard setToken={setToken} />
-        </div>
-    );
 }
 
 export default App;
