@@ -1,7 +1,21 @@
+.root {
+  --mainBlue: #2f464b;
+  --vibrantGreen: #26a037;
+  --paleblue: #4d8180;
+  --lightblue: #94cbca;
+  --darkBlue: #103948;
+  --darkGreen: #17560e;
+  --inactiveGray: #515455;
+
+  --textblue: #2e8a99;
+  --textgreen: #5cbd6b;
+  --textwrong: #5f2222;
+}
+
 body
 {
-  height: 100vh;
-  background-image: url('bg.png');
+  background-image: url('img/background.png');
+  background-color: var(--mainBlue);
 }
 
 .App {
