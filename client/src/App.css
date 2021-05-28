@@ -1,4 +1,4 @@
-.root {
+body{
   --mainBlue: #2f464b;
   --vibrantGreen: #26a037;
   --paleblue: #4d8180;
@@ -10,13 +10,11 @@
   --textblue: #2e8a99;
   --textgreen: #5cbd6b;
   --textwrong: #5f2222;
+
+  background-image: url('img/background.png');
+  background-color: #2f464b;
 }
 
-body
-{
-  background-image: url('img/background.png');
-  background-color: var(--mainBlue);
-}
 
 .App {
   padding-top: 10%;
@@ -35,14 +33,14 @@ body
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--mainBlue);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--darkBlue);
 }
 
 .App-link {

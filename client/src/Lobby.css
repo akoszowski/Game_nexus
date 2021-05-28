@@ -3,7 +3,8 @@
     padding: 10px;
     margin: 10px;
     width: calc(100% - 20px);
-    background-color: chocolate;
+    background-color: var(--darkBlue);
+    color: var(--textblue);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -12,7 +13,7 @@
 .vert-header
 {
     font-weight: 700;
-    font-size: 2m;
+    font-size: 2em;
 }
 /*
 .vert-wrapper
@@ -28,12 +29,12 @@
 .vert:hover
 {
     cursor: pointer;
-    color: yellow;
+    color: var(--textgreen);
 }
 
 .vert-offline
 {
-    background-color: rgb(255, 123, 123);
+    background-color: var(--inactiveGray);
     
 }
 

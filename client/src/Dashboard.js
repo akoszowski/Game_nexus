@@ -6,6 +6,8 @@ import Lobby from './Lobby.js'
 import Settings from './Settings.js'
 import Stats from './Stats.js'
 import Ranking from './Ranking';
+import {Col, Container, Image, Row} from "react-bootstrap";
+import logo from './img/LOGO-text.png'
 
 
 function showLobby()
@@ -82,16 +84,23 @@ export default function Dashboard({setAuthorized})
 
     return(
         <div id = "dsh" className="dashboard-wrapper">
+
             <div className="dashboard-banner">
-                Game Nexus
+                <img
+                    src={logo}
+                    className="d-inline-block align-top"
+                    alt="Game Nexus"
+                />
             </div>
             <div className="topnav">
-                <div className="top-button" onClick={showLobby}>Game Lobby</div>
-                <div className="top-button" onClick={showStats}>Stats</div>
-                <div className="top-button" onClick={showRanking}>Ranking</div>
-                <div className="top-button" onClick={showSettings}>Settings</div>
-                <div className="top-button" onClick={handleLogout}>Log out</div>
-                <div id = "namebutton" className="top-button right-button">[{data.username}]</div>
+
+                            <div className="top-button" onClick={showLobby}>Game Lobby</div>
+                            <div className="top-button" onClick={showStats}>Stats</div>
+                            <div className="top-button" onClick={showRanking}>Ranking</div>
+                            <div className="top-button" onClick={showSettings}>Settings</div>
+                            <div className="top-button" onClick={handleLogout}>Log out</div>
+                            <div id = "namebutton" className="top-button right-button">[{data.username}]</div>
+
             </div>
             <Lobby mailvalue = {data.email} />
             <Stats games = {data.games} username = {data.username} statsInfo= {data.statsInfo}/>
@@ -101,4 +110,3 @@ export default function Dashboard({setAuthorized})
 
     );
 }
-  

@@ -1,3 +1,4 @@
+
 .dashboard-wrapper
 {
     min-height: 100%;
@@ -10,39 +11,50 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: lime;
+    background-color: var(--darkBlue);
     overflow: hidden;
 }
 
-.topnav .top-button
+.top-button
 {
     display: block;
-    color: black;
+
     font-weight: 750;
     text-align: center;
     padding: 5px;
     margin: 5px;
     font-size: 25px;
+
+    background-color: var(--darkBlue);
+    color: var(--textgreen);
+    border-color: var(--vibrantGreen);
 }
 
-.topnav .top-button:hover
+.top-button:hover
 {
-    color: rgb(216, 250, 65);
+    background-color: var(--darkGreen);
+    color: var(--textblue);
+    border-color: var(--paleblue);
+
     cursor: pointer;
-    background-color: black;
-    border-radius: 10px;
 }
 
 .main-content
 {
-    padding: 10px 0;
-    background-color: beige;
+    background-color: var(--paleblue);
+    color: var(--darkBlue);
+
+    padding: 15px;
+    border-radius: 15px;
+
+    overflow: scroll;
 }
 
 .dashboard-banner
 {
     text-align: center;
-    color: skyblue;
+    background-color: var(--paleblue);
+    color: var(--darkBlue);
     font-weight: 900;
     font-size: 5vh;
 }

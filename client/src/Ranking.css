@@ -9,6 +9,7 @@
     .ranking-table {
         table-layout: fixed;
         overflow-x: auto;
+        background-color: var(--mainBlue);
     }
 
     .place {
