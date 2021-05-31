@@ -32,7 +32,7 @@ class Queries {
     }
 
     static async updateStats(username, game, result) {
-        await db.query('INSERT INTO stats(username, game, result) VALUES ($1, $2, $3)', [username, game, result]);
+        await db.query('INSERT INTO stats(username, game, date, result) VALUES ($1, $2, DEFAULT, $3)', [username, game, result]);
         return true;
     }
 
