@@ -11,19 +11,24 @@ import e from 'cors';
 //  ->  jeśli dostaniesz status 400, to gracz ma jeszcze aktywną rozgrywkę
 //  ->  i teraz w res masz urla na którego robisz redirect w nowej karcie
 
-function playTTTSingle()
-{
+function playRPSSingle() {
+    window.open("https://game-nexus-ttt.herokuapp.com/single", "_blank");
+}
+
+function playRPSMulti() {
+    window.open("https://game-nexus-ttt.herokuapp.com", "_blank");
+}
+
+function playTTTSingle() {
     window.open("https://game-nexus-rps.herokuapp.com/single", "_blank");
 }
 
-function playTTTMulti()
-{
+function playTTTMulti() {
     window.open("https://game-nexus-rps.herokuapp.com/ ", "_blank");
 }
 
-function playSabacc()
-{
-    
+function playSabacc() {
+
 }
 
 export default function Lobby({mailvalue})
@@ -31,9 +36,13 @@ export default function Lobby({mailvalue})
 
     return (
         <div id = "lobby-body" className="lobby-content main-content">
-            <div className="vert vert-header" onClick = {playTTTSingle}>Kółko and Krzyżyk (Single)</div>
+            <div className="vert vert-header" onClick = {playRPSSingle}>Rock-paper-scissors (Single)</div>
 
-            <div className="vert vert-header" onClick = {playTTTMulti}>Kółko and Krzyżyk (Multi)</div>
+            <div className="vert vert-header" onClick = {playRPSMulti}>Rock-paper-scissors (Multi)</div>
+
+            <div className="vert vert-header" onClick = {playTTTSingle}>Tic-tac-toe (Single)</div>
+
+            <div className="vert vert-header" onClick = {playTTTMulti}>Tic-tac-toe (Multi)</div>
 
             <div className="vert vert-header" onClick = {playSabacc}>Sabaac</div>
         </div>

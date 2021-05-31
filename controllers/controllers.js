@@ -97,14 +97,20 @@ const updateStats = (req, res, next) => {
     let username = req.body.username;
     let result = req.body.result;
 
-    if (activeGames.has(username)) {
-        Queries.updateStats(username, game, result).then(updated => {
-            res.status(200).send("Stats successfully updated");
-        });
-        activeGames.delete(username);       // FIXME: potential callback ?
-    } else {
-        res.status(400).send("Not synchronized data. Such a user has not started a game!");
-    }
+    Queries.updateStats(username, game, result).then(updated => {
+        res.status(200).send("Stats successfully updated");
+    }).catch(err => {
+        res.status(400).send("Not synchronized data!");
+    });
+
+    // if (activeGames.has(username)) {
+    //     Queries.updateStats(username, game, result).then(updated => {
+    //         res.status(200).send("Stats successfully updated");
+    //     });
+    //     activeGames.delete(username);       // FIXME: potential callback ?
+    // } else {
+    //     res.status(400).send("Not synchronized data. Such a user has not started a game!");
+    // }
 }
 
 // Enables to set new password.

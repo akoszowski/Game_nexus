@@ -10,6 +10,7 @@ export default function Stats({games, username, statsInfo})
 {
     return (
         <div id ="stats-body" className="stats-content main-content">
+            <h2>Stats for multiplayer versions only</h2>
             {games.map((gamesRow, gamesRowIndex) => {
                     console.log(statsInfo);
                     const totalGames = statsInfo.filter(statsRow => statsRow.game === gamesRow.game).length;

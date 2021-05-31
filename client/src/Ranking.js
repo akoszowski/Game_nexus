@@ -10,6 +10,7 @@ export default function Ranking({games, username, rankingInfo})
 {
     return (
         <div id ="ranking-body" className="ranking-content main-content">
+            <h2>Ranking for multiplayer versions only</h2>
             {games.map((gamesRow, gamesRowIndex) => {
                     return <div>
                         <h1>{gamesRow.game}</h1>
