@@ -12,19 +12,19 @@ import e from 'cors';
 //  ->  i teraz w res masz urla na którego robisz redirect w nowej karcie
 
 function playRPSSingle() {
-    window.open("https://game-nexus-ttt.herokuapp.com/single", "_blank");
-}
-
-function playRPSMulti() {
-    window.open("https://game-nexus-ttt.herokuapp.com", "_blank");
-}
-
-function playTTTSingle() {
     window.open("https://game-nexus-rps.herokuapp.com/single", "_blank");
 }
 
+function playRPSMulti() {
+    window.open("https://game-nexus-rps.herokuapp.com", "_blank");
+}
+
+function playTTTSingle() {
+    window.open("https://game-nexus-ttt.herokuapp.com/single", "_blank");
+}
+
 function playTTTMulti() {
-    window.open("https://game-nexus-rps.herokuapp.com/ ", "_blank");
+    window.open("https://game-nexus-ttt.herokuapp.com/ ", "_blank");
 }
 
 function playSabacc() {
