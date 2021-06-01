@@ -24,13 +24,15 @@ export default function Ranking({games, username, rankingInfo})
                             </thead>
 
                             {rankingInfo.filter(rankingRow => rankingRow.game === gamesRow.game).map((row, rowIndex) => {
-                                    return <tbody>
-                                    <tr>
-                                        <td className="place">{rowIndex + 1}</td>
-                                        <td className="username">{row.username}</td>
-                                        <td className="wins">{row.wins}</td>
-                                    </tr>
-                                    </tbody>;
+                                    if (rowIndex < 3) {
+                                        return <tbody>
+                                        <tr>
+                                            <td className="place">{rowIndex + 1}</td>
+                                            <td className="username">{row.username}</td>
+                                            <td className="wins">{row.wins}</td>
+                                        </tr>
+                                        </tbody>;
+                                    }
                                 }
                             )}
                         </Table>

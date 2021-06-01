@@ -26,14 +26,16 @@ export default function Stats({games, username, statsInfo})
                             </tr>
                             </thead>
 
-                            {statsInfo.filter(statsRow => statsRow.game === gamesRow.game).map(row => {
-                                    return <tbody>
-                                    <tr>
-                                        <td className="username">{row.username}</td>
-                                        <td className="date">{row.date}</td>
-                                        <td className="result">{row.result}</td>
-                                    </tr>
-                                    </tbody>;
+                            {statsInfo.filter(statsRow => statsRow.game === gamesRow.game).map((row, rowIndex) => {
+                                    if (rowIndex < 10) {
+                                        return <tbody>
+                                        <tr>
+                                            <td className="username">{row.username}</td>
+                                            <td className="date">{row.date}</td>
+                                            <td className="result">{row.result}</td>
+                                        </tr>
+                                        </tbody>;
+                                    }
                                 }
                             )}
                             <br/>
